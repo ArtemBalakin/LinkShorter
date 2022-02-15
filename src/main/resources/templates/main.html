@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+<header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="/mainPage" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+        <li class="nav-item"><a href="/registry" class="nav-link">Registry</a></li>
+        <li class="nav-item"><a href="/login" class="nav-link">Sign in</a></li>
+    </ul>
+</header>
+<body>
+<script type="text/javascript" src="/static/Auth.js"></script>
+<div class="container col-md-10">
+    <div class="input-group" style="margin-bottom:20px">
+        <span class="input-group-text" id="basic-addon2">Token</span>
+        <input type="text" class="form-control" placeholder="Your token for special command" aria-label="Username"
+               aria-describedby="basic-addon1" id="accessToken" title="To get a token, register">
+    </div>
+    <div class="input-group" style="margin-bottom:20px">
+        <span class="input-group-text" id="basic-addon1">Refresh Token</span>
+        <input type="text" class="form-control" placeholder="Your refresh token for update tokens" aria-label="Username"
+               aria-describedby="basic-addon1" id="refreshToken" title="To get a token, register">
+    </div>
+    <form action="/makeShortLink" method="post">
+        <div class="form-group">
+            <input type="text" name="originalURL" class="form-control" autofocus required title="Default link"
+                   placeholder="Default link" style="margin-right: 10px">
+        </div>
+        <div class="form-group">
+            <input type="text" name="TTL" class="form-control" autofocus title="ttl"
+                   placeholder="TTL(default-forever)" style="margin-right: 10px">
+        </div>
+        <div class="row" style="margin-top:20px">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" name="ownTitle" class="form-control" autofocus
+                           title="Which link do you want to record"
+                           placeholder="Your short link name" style="margin-right: 10px">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" name="pin" class="form-control" autofocus
+                           title="This pin will help us understand that the link belongs to you"
+                           placeholder="Pin" style="margin-right: 10px">
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Make short link">
+
+    </form>
+    <form name="delete" id="d">
+        <div class="container" style="margin-top:20px">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" name="originalURL" class="form-control" autofocus required
+                           title="Your short link" id="hashForDelete"
+                           placeholder="Your link" style="margin-top:20px">
+                </div>
+                <div class="col-md-3">
+                    <input type="text" name="originalURL" id="deletePin" class="form-control" autofocus required
+                           title="Pin"
+                           placeholder="Pin for this link" style="margin-top:20px">
+                </div>
+                <div>
+                    <input type="submit" onclick="deleteShort()" class="btn btn-primary" size="10px"
+                           value="Delete short link"
+                           style="margin-top:20px">
+                </div>
+            </div>
+        </div>
+    </form>
+    <form action="/getStatistic" method="get">
+        <div class="container" style="margin-top:20px">
+            <div class="row" style="margin-top:20px">
+                <div class="col-md-9">
+                    <input type="text" name="hash" class="form-control" autofocus required
+                           title="Your short link"
+                           placeholder="Your link" size="10px">
+                </div>
+                <div class="col-md-3">
+                    <input type="submit" class="btn btn-primary" value="Get statistic">
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row" style="margin-top:20px">
+        <div class="col-md-6">
+            <input type="submit" onclick="updateAccessToken()" class="btn btn-primary" value="Update access token"
+                   size="100px">
+        </div>
+
+    </div>
+    <div class="row" style="margin-top:20px">
+        <div class="col-md-6">
+            <input type="submit" onclick="updateAllToken()" class="btn btn-primary" value="Update all tokens">
+        </div>
+    </div>
+
+</div>
+</body>
